@@ -30,6 +30,6 @@ public abstract class Car implements Movable {
     }
     public Color getColor() {
 
-        return color
+        return color;
     }
 }
