@@ -1,6 +1,15 @@
 import java.awt.*;
 
-public abstract class Car implements Movable{
+/*
+Abstract class är en "basklass" som byggs på. Den innehåller bl.a. gemensam, duplicerad kod från Saab95 och Volvo240. 
+Implements implementerar Movable och dess metoder. 
+*/
+
+public abstract class Car implements Movable {
+
+/*
+Deklarering av variabler och sätts till private där tillåtet. Ökar säkerheten.
+*/
 
     private int nrDoors;
     public double enginePower;
@@ -10,8 +19,16 @@ public abstract class Car implements Movable{
     public double xpos;
     public double ypos;
     private double direction; 
+
+/*
+Start på konstruktorn, med kodens parametrar...
+*/
     
     public Car(int nrDoors, double enginePower, String modelName, Color color, double xpos, double ypos, double direction) {
+
+/*
+Initialiserar de 7 parametrar som getts i konstruktorn, "this" sätter värden till instansvariablerna (attributen).  
+*/
 
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
@@ -55,6 +72,16 @@ public abstract class Car implements Movable{
             move();
         }
     }
+
+	/*
+ 	EXEMPEL: 
+
+	Metod "brake" och parameter "double amount". Lokal variabel "amount". 
+	Om if-satsen stämmer kallas metoden "decrementSpeed()" med "amount" som argument. 
+	Därefter kallas metoden "move()"
+
+  	vvvvvvvvvvv
+	*/
 
     public void brake(double amount){
         if(amount >= 0 && amount <= 1) {
