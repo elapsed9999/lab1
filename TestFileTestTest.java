@@ -13,6 +13,10 @@ class TestFileTestTest {
         Test för Saab95 med 1, 1.2 och -0.1.
         Ger 0 i hastighet när amount i gas <= 0 eller >= 1.
         Ger rätt hastighet när amount i gas är 1.0 enl. test.
+
+        Saab95 är namnet på klassen, car1 är det skapade objektet. 
+        new Saab95(); gör en ny instans av klassen Saab95. 
+        
          */
 
         Saab95 car1 = new Saab95();
@@ -67,6 +71,11 @@ class TestFileTestTest {
 
     @Test
     void testSpeed() {
+
+        /*
+        Test med hastighet, tillåts ej överträda 125. 
+        Och ej understiga 0. 
+        */
 
             Saab95 car1 = new Saab95();
 
