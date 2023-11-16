@@ -1,48 +1,42 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-public class CarTransporter extends Car{
+public class CarTransporter <T extends Car> extends Car{
+
+    private final ArrayList <T> currentCars;
+    private final Class<T> carX;
+    private double closeness; 
 
     public CarTransporter(){
         super(2,300,"CarTransporter",Color.GREEN,0,0,0);
 
     }
 
-    public void pickup(carTran,carpick){
-        if (carTran.whatAmI == carTransporter && carpick.whatAmI == car)
-            if (carTran.currentSpeed = 0)
-                if(carTran.rampdown)
-                    closeness=((carTran.xpos+carpick.xpos)^2+(carTran.ypos+carpick.ypos)^2)^0.5;
-                    if(closeness <= 15) 
-                        carTran.carin.add(carpick);
-    }
-
-    public void unload(carTran,carpick){
-        if(carTran.carin__==int lastIndexOf(carpick))
+    public boolean rampdown() {
+        if(getCurrentSpeed() > 0)
+            return false;
         
-        if(carpick=all)
-
-        if(carpick=int)
-
+        return true;
     }
 
-    public static void main(String[] args) {
-        ArrayList<String> cars = new ArrayList<String>();
-        cars.add("Volvo");
-        cars.add("BMW");
-        cars.add("Ford");
-        cars.add("Mazda");
-        System.out.println(cars);
-      }
-          
-
     
+    ArrayList<Object> carin = new ArrayList<>();
     
- 
-    public double speedFactor(){
-        if(currentDegree > 0)
-                return 0;
-            return 1;
-        }
 
+    public void pickup(T carpick) {
+        if (rampdown())
+            closeness = ((getCurrentXpos()+carpick.xpos)^2+(getCurrentYpos()+carpick.ypos)^2)^0.5;
+            if(closeness <= 15)
+                carin.add(carpick);
+                currentCars.add(carpick);
+            System.out.println(closeness);
     }
+
+    public void unload(T carpick) {
+        if(rampdown()) 
+            if(carin.get(carin.size()-1)==carpick)
+                carin.remove(carin.size()-1);
+                carpick.isDocked=false;
+    }
+
+}
