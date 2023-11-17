@@ -94,7 +94,7 @@ class TestFileTestTest2 {
 
     @Test
     void testWorkshop() {
-        Garage work1 = new Garage();
+        Garage<Volvo240> work1 = new Garage();
         CarTransporter carT1 = new CarTransporter();
         Volvo240 car1 = new Volvo240();
         Volvo240 car2 = new Volvo240();
