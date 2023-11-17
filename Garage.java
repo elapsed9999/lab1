@@ -3,32 +3,37 @@ import java.util.ArrayList;
 
 public class Garage <T extends Car> {
 
-    private final int maxCars;
-    private final ArrayList <T> currentCars;
-    private final Class<T> brandOfCar;
+    private int maxCars;
+    private ArrayList <T> currentCars;
+    private Class<T> brandOfCar;
 
+    
+    public void maxGarageLimit(int maxCars) {
 
-    public Garage(int maxCars, Class<T> brandOfCar) {
-
-        this.brandOfCar = brandOfCar;
         this.maxCars = maxCars;
-        this.currentCars = new ArrayList<>();
-        
+
     }
 
-    public void isItTheRightBrand(T theCar) {
+    public Garage() {
+
+        this.currentCars = new ArrayList<>();
+    }
+
+    public void leaveCar(T theCar) {
 
         if(brandOfCar.isInstance(theCar) && currentCars.size() < maxCars) {
             
             currentCars.add(theCar);
+            theCar.isDocked=true;
         } 
-        }
+    }
     
-
-    public void pickUpCar(T yourNumber) {
+    public void pickUpCar(T theCar) {
 
         if(currentCars.size() > 0)
-            currentCars.remove(yourNumber);
+            currentCars.remove(currentCars.indexOf(theCar));
+            theCar.isDocked=false;
+            
     }
 
 }
