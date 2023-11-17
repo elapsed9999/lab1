@@ -3,40 +3,52 @@ import java.util.ArrayList;
 
 public class CarTransporter <T extends Car> extends Car{
 
-    private final ArrayList <T> currentCars;
-    private final Class<T> carX;
+    protected final ArrayList <Car> carin = new ArrayList<>();
+    
     private double closeness; 
+    private boolean rampdown = false;
 
     public CarTransporter(){
         super(2,300,"CarTransporter",Color.GREEN,0,0,0);
 
     }
 
-    public boolean rampdown() {
-        if(getCurrentSpeed() > 0)
-            return false;
-        
-        return true;
+    public void rampdownToggle() {
+        if(getCurrentSpeed() == 0)
+            rampdown = !(rampdown);
     }
 
-    
-    ArrayList<Object> carin = new ArrayList<>();
+    public boolean rampdown() {
+        return rampdown;
+    }
+
+
+    public double speedFactor(){
+        if(rampdown())
+             return 0;
+         return 1;
+     }
+
     
 
-    public void pickup(T carpick) {
+    public void pickup(Car carpick) {
         if (rampdown())
-            closeness = ((getCurrentXpos()+carpick.xpos)^2+(getCurrentYpos()+carpick.ypos)^2)^0.5;
+            closeness = Math.sqrt(Math.pow((getCurrentXpos()+carpick.getCurrentXpos()), 2))+Math.pow((getCurrentYpos()+carpick.getCurrentYpos()), 2);
             if(closeness <= 15)
-                carin.add(carpick);
-                currentCars.add(carpick);
+                if(!carpick.isDocked)
+                    carin.add(carpick);
+                    carpick.isDocked=true;
             System.out.println(closeness);
     }
 
-    public void unload(T carpick) {
+    public void unload(Car carpick) {
         if(rampdown()) 
             if(carin.get(carin.size()-1)==carpick)
                 carin.remove(carin.size()-1);
                 carpick.isDocked=false;
+                carpick.xpos=getCurrentXpos();
+                carpick.ypos=getCurrentYpos();
+                
     }
 
 }
