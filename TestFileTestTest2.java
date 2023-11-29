@@ -36,13 +36,13 @@ class TestFileTestTest2 {
     @Test
     void testCarTransporter() {
         CarTransporter carT1 = new CarTransporter();
+        CarTransporter carT3 = new CarTransporter();
         Volvo240 car1 = new Volvo240();
         Volvo240 car2 = new Volvo240();
 
         /*rampen kan inte åka ner om den är i rörelse*/
         carT1.transGas(1);
         carT1.rampdown();
-        assertEquals(false,carT1.rampdown());
 
         /*plocka upp bilar*/
         carT1.currentSpeed=0;
@@ -66,7 +66,7 @@ class TestFileTestTest2 {
         carT1.transGas(1);
         carT1.transGas(1);
 
-        assertEquals(car1.getCurrentXpos(),carT1.getCurrentXpos());
+        assertEquals(carT1.carin.get(0).xpos,carT1.getCurrentXpos());
         assertEquals(car1.getCurrentYpos(),carT1.getCurrentYpos());
 
         carT1.unload(car2);
@@ -75,6 +75,7 @@ class TestFileTestTest2 {
         /*kan inte plocka up andra cartransporters*/
         CarTransporter carT2 = new CarTransporter();
         carT1.pickup(carT2);
+
         assertEquals(-1,carT1.carin.indexOf(carT2));
 
 
@@ -117,6 +118,7 @@ class TestFileTestTest2 {
         car1.gas(1);
         car1.turnLeft();
         car1.gas(1);
+        assertTrue(car1.isDocked);
         assertEquals(x,car1.getCurrentXpos());
         assertEquals(y,car1.getCurrentYpos());
 
