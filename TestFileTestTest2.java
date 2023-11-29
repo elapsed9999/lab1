@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TestFileTestTest2 {
 
@@ -41,7 +40,7 @@ class TestFileTestTest2 {
         Volvo240 car2 = new Volvo240();
 
         /*rampen kan inte åka ner om den är i rörelse*/
-        carT1.gas(1);
+        carT1.transGas(1);
         carT1.rampdown();
         assertEquals(false,carT1.rampdown());
 
@@ -56,6 +55,19 @@ class TestFileTestTest2 {
         /*unload försök misslyckas då car2 är ivägen*/
         carT1.unload(car1);
         assertEquals(0,carT1.carin.indexOf(car1));
+
+        carT1.transGas(1);
+        carT1.transGas(1);
+        carT1.transGas(1);
+        carT1.transGas(1);
+        carT1.turnLeft();
+        carT1.transGas(1);
+        carT1.transGas(1);
+        carT1.transGas(1);
+        carT1.transGas(1);
+
+        assertEquals(car1.getCurrentXpos(),carT1.getCurrentXpos());
+        assertEquals(car1.getCurrentYpos(),carT1.getCurrentYpos());
 
         carT1.unload(car2);
         assertEquals(-1,carT1.carin.indexOf(car2));
@@ -90,7 +102,6 @@ class TestFileTestTest2 {
 
 
     }
-
 
     @Test
     void testWorkshop() {
