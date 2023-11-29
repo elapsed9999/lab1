@@ -33,7 +33,7 @@ public class CarTransporter extends Car{
         gas(amount);
         int carinsize =carin.size()-1;
         if (carinsize >= 0){
-            for (int i = 0;i == carinsize ; i++) {
+            for (int i = 0;i <= carinsize ; i++) {
                 carin.get(i).xpos = xpos;
                 carin.get(i).ypos = ypos;
             }
