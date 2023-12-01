@@ -4,8 +4,7 @@ import java.util.ArrayList;
 public class Garage <T extends Car> {
 
     private int maxCars;
-    private ArrayList <T> currentCars;
-    private Class<T> brandOfCar;
+    private ArrayList <Car> currentCars;
 
     
     public void maxGarageLimit(int maxCars) {
@@ -21,7 +20,7 @@ public class Garage <T extends Car> {
 
     public void leaveCar(T theCar) {
 
-        if(brandOfCar.isInstance(theCar) && currentCars.size() < maxCars) {
+        if(currentCars.size() < maxCars) {
             
             currentCars.add(theCar);
             theCar.isDocked=true;
@@ -37,3 +36,4 @@ public class Garage <T extends Car> {
     }
 
 }
+
