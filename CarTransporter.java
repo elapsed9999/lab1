@@ -32,12 +32,11 @@ public class CarTransporter extends Car{
     public void transGas(double amount){
         gas(amount);
         int carinsize =carin.size()-1;
-        if (carinsize >= 0){
+        if (carinsize >= 0)
             for (int i = 0;i <= carinsize ; i++) {
                 carin.get(i).xpos = xpos;
                 carin.get(i).ypos = ypos;
             }
-        }
     }
 
     
@@ -48,18 +47,13 @@ public class CarTransporter extends Car{
             if(closeness <= 15)
                 if(!carpick.isDocked && !(carpick instanceof CarTransporter))
                     carin.add(carpick);
-                    carpick.isDocked=true;
-            System.out.println(closeness);
+                    carpick.isDocked = true;
     }
 
     public void unload(Car carpick) {
         if(rampdown()) 
-            if(carin.get(carin.size()-1)==carpick)
+            if(carin.get(carin.size()-1)==carpick){
                 carin.remove(carin.size()-1);
-                carpick.isDocked=false;
-                carpick.xpos=getCurrentXpos();
-                carpick.ypos=getCurrentYpos();
-                
+                carpick.isDocked=false;}
     }
 
-}
