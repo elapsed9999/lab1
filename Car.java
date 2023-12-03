@@ -19,7 +19,7 @@ Deklarering av variabler och sätts till private där tillåtet. Ökar säkerhet
     protected double xpos;
     protected double ypos;
     private double direction;
-    protected boolean isDocked;
+    public boolean isDocked = false;
 
 
     /*
@@ -44,17 +44,41 @@ Initialiserar de 7 parametrar som getts i konstruktorn, "this" sätter värden t
     
     /* ändrar x-/y-värde beroende på currentspeed och direction (direction = r=0 mod 2pi ger riktning åt öst)*/
     public void move(){
-        xpos += Math.cos(direction)*currentSpeed;
-        ypos += Math.sin(direction)*currentSpeed;
+        xpos += Math.round(Math.cos(direction)*currentSpeed);
+        ypos += Math.round(Math.sin(direction)*currentSpeed);
+        if (ypos < 0){
+            rotateMe();
+            ypos = 0;
+            currentSpeed=0;
+            gas(0.25);
+        }
+        if (ypos > 500) {
+            rotateMe();
+            ypos = 500;
+            currentSpeed=0;
+            gas(0.25);
+        }
+        if (xpos < 0){
+            rotateMe();
+            xpos = 0;
+            currentSpeed=0;
+            gas(0.25);
+        }
+        if (xpos > 700) {
+            rotateMe();
+            xpos = 700;
+            currentSpeed=0;
+            gas(0.25);
+        }
     }
     
     /* Ändrar direction med 90 grader (det vill säga rotation med pi/2 där höger subtraherar och vänster adderar) */
     public void turnRight(){
-        direction -= Math.PI/2;
+        direction += Math.PI/2;
     }
 
     public void turnLeft(){
-        direction += Math.PI/2;
+        direction -= Math.PI/2;
     }
 
     abstract double speedFactor();
@@ -67,11 +91,17 @@ Initialiserar de 7 parametrar som getts i konstruktorn, "this" sätter värden t
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
 
+    public void  rotateMe(){
+        direction+= Math.PI;
+    }
+
+
     public void gas(double amount){
         if(amount >= 0 && amount <= 1) {
-            if (isDocked==false)
+            if (!isDocked) {
                 incrementSpeed(amount);
                 move();
+            }
         }
     }
 
@@ -136,3 +166,4 @@ Initialiserar de 7 parametrar som getts i konstruktorn, "this" sätter värden t
     }
 
 }
+
