@@ -44,32 +44,32 @@ Initialiserar de 7 parametrar som getts i konstruktorn, "this" sätter värden t
     
     /* ändrar x-/y-värde beroende på currentspeed och direction (direction = r=0 mod 2pi ger riktning åt öst)*/
     public void move(){
-        xpos += Math.round(Math.cos(direction)*currentSpeed);
-        ypos += Math.round(Math.sin(direction)*currentSpeed);
+        moveforward();
+        checkWall();
+    }
+
+    public void checkWall(){
         if (ypos < 0){
             rotateMe();
             ypos = 0;
-            currentSpeed=0;
-            gas(0.25);
         }
         if (ypos > 500) {
             rotateMe();
             ypos = 500;
-            currentSpeed=0;
-            gas(0.25);
         }
         if (xpos < 0){
             rotateMe();
             xpos = 0;
-            currentSpeed=0;
-            gas(0.25);
         }
         if (xpos > 700) {
             rotateMe();
             xpos = 700;
-            currentSpeed=0;
-            gas(0.25);
         }
+    }
+
+    public void moveforward() {
+        xpos += Math.round(Math.cos(direction) * currentSpeed);
+        ypos += Math.round(Math.sin(direction) * currentSpeed);
     }
     
     /* Ändrar direction med 90 grader (det vill säga rotation med pi/2 där höger subtraherar och vänster adderar) */
