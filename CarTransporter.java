@@ -41,16 +41,17 @@ public class CarTransporter extends Car{
             }
     }
         
-    }    
+        
 
     public void pickup(Car carpick) {
-        if (rampdown())
+        if (rampdown()){
             closeness = Math.sqrt(Math.pow((getCurrentXpos()+carpick.getCurrentXpos()), 2))+Math.pow((getCurrentYpos()+carpick.getCurrentYpos()), 2);
             if(closeness <= 15)
                 if(!carpick.isDocked && !(carpick instanceof CarTransporter)){
                     carin.add(carpick);
                     carpick.isDocked = true;
                 }
+        }
     }
 
     public void unload(Car carpick) {
