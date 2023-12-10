@@ -44,7 +44,7 @@ Initialiserar de 7 parametrar som getts i konstruktorn, "this" sätter värden t
     
     /* ändrar x-/y-värde beroende på currentspeed och direction (direction = r=0 mod 2pi ger riktning åt öst)*/
     public void move(){
-        moveforward();
+        moveForward();
         checkWall();
     }
 
@@ -67,7 +67,7 @@ Initialiserar de 7 parametrar som getts i konstruktorn, "this" sätter värden t
         }
     }
 
-    public void moveforward() {
+    public void moveForward() {
         xpos += Math.round(Math.cos(direction) * currentSpeed);
         ypos += Math.round(Math.sin(direction) * currentSpeed);
     }
