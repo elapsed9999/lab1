@@ -77,9 +77,12 @@ public class CarTransporter extends Car{
     }
 
     public void unload(Car carpick) {
-        if(rampdown()) 
-            if(carin.get(carin.size()-1)==carpick){
-                carin.remove(carin.size()-1);
-                carpick.isDocked=false;}
+        if (rampdown()) {
+            if ((carin.size() - 1) == (carin.indexOf(carpick))){
+                carin.remove(carin.size() - 1);
+                carpick.isDocked = false;
+            }
+        }
+    }
     }
 
