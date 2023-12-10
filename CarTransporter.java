@@ -30,39 +30,16 @@ public class CarTransporter extends Car{
     }
 
     public void move(){
-        xpos += Math.round(Math.cos(direction)*currentSpeed);
-        ypos += Math.round(Math.sin(direction)*currentSpeed);
-        if (ypos < 0){
-            rotateMe();
-            ypos = 0;
-            currentSpeed=0;
-            gas(0.25);
-        }
-        if (ypos > 500) {
-            rotateMe();
-            ypos = 500;
-            currentSpeed=0;
-            gas(0.25);
-        }
-        if (xpos < 0){
-            rotateMe();
-            xpos = 0;
-            currentSpeed=0;
-            gas(0.25);
-        }
-        if (xpos > 700) {
-            rotateMe();
-            xpos = 700;
-            currentSpeed=0;
-            gas(0.25);
-        }
+        moveforward();
+        checkWall();
+
         int carinsize =carin.size()-1;
-        if (carinsize >= 0){
+        if (carinsize >= 0)
             for (int i = 0;i <= carinsize ; i++) {
                 carin.get(i).xpos = xpos;
                 carin.get(i).ypos = ypos;
             }
-        }
+    }
         
     }    
 
