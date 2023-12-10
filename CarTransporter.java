@@ -30,7 +30,7 @@ public class CarTransporter extends Car{
     }
 
     public void move(){
-        moveforward();
+        moveForward();
         checkWall();
 
         int carinsize =carin.size()-1;
